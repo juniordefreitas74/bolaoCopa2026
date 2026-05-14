@@ -1,0 +1,108 @@
+body{
+  margin:0;
+  padding:0;
+  font-family:Arial;
+  background:#0f172a;
+  height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.login-box{
+
+  background:white;
+  padding:30px;
+  border-radius:10px;
+
+  width:320px;
+
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+h1{
+  margin:0 0 20px 0;
+  text-align:center;
+}
+
+input{
+
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+
+button{
+
+  padding:12px;
+  border:none;
+  border-radius:6px;
+
+  background:#2563eb;
+  color:white;
+
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:0.9;
+}
+
+#msg{
+  text-align:center;
+  color:red;
+}
+
+.painel{
+
+  background:white;
+  padding:30px;
+
+  border-radius:10px;
+
+  width:500px;
+
+  text-align:center;
+}
+
+h2{
+  color:#2563eb;
+}
+
+#areaJogos{
+
+  margin-top:20px;
+}
+
+.card-jogo{
+
+  background:#f1f5f9;
+
+  padding:15px;
+
+  border-radius:10px;
+
+  margin-bottom:10px;
+}
+.linha-jogo{
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:10px;
+
+  margin:15px 0;
+}
+
+.input-gol{
+
+  width:50px;
+
+  padding:8px;
+
+  text-align:center;
+}
