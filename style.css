@@ -1,12 +1,30 @@
 body{
+
   margin:0;
-  padding:0;
+  padding:20px;
+
   font-family:Arial;
-  background:#0f172a;
-  height:100vh;
+
+  background:
+    radial-gradient(circle at top left, rgba(255,223,0,0.35), transparent 32%),
+    linear-gradient(135deg, #009739 0%, #00843d 45%, #006b2e 100%);
+
+  min-height:100vh;
+}
+
+*{
+
+  box-sizing:border-box;
+}
+
+.login-page{
+
+  min-height:100vh;
 
   display:flex;
+
   justify-content:center;
+
   align-items:center;
 }
 
@@ -14,18 +32,24 @@ body{
 
   background:white;
   padding:30px;
-  border-radius:10px;
+  border-radius:12px;
 
   width:320px;
 
   display:flex;
   flex-direction:column;
   gap:10px;
+
+  border:3px solid #ffdf00;
+
+  box-shadow:0 8px 25px rgba(0,39,118,0.28);
 }
 
 h1{
   margin:0 0 20px 0;
   text-align:center;
+
+  color:#002776;
 }
 
 input{
@@ -41,7 +65,7 @@ button{
   border:none;
   border-radius:6px;
 
-  background:#2563eb;
+  background:#002776;
   color:white;
 
   cursor:pointer;
@@ -49,6 +73,37 @@ button{
 
 button:hover{
   opacity:0.9;
+}
+
+.botao-link{
+
+  display:inline-block;
+
+  padding:12px;
+
+  border-radius:6px;
+
+  background:#002776;
+
+  color:white;
+
+  text-decoration:none;
+
+  text-align:center;
+
+  cursor:pointer;
+}
+
+.botao-link:hover{
+
+  opacity:0.9;
+}
+
+.botao-secundario{
+
+  background:#009739;
+
+  box-shadow:inset 0 0 0 2px #ffdf00;
 }
 
 #msg{
@@ -59,17 +114,37 @@ button:hover{
 .painel{
 
   background:white;
+
   padding:30px;
 
-  border-radius:10px;
+  border-radius:14px;
 
-  width:500px;
+  max-width:1200px;
+
+  margin:auto;
 
   text-align:center;
+
+  border:3px solid #ffdf00;
+
+  box-shadow:0 8px 25px rgba(0,39,118,0.25);
 }
 
 h2{
-  color:#2563eb;
+  color:#002776;
+}
+
+#acoesAdmin{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-top:15px;
 }
 
 #areaJogos{
@@ -77,16 +152,217 @@ h2{
   margin-top:20px;
 }
 
-.card-jogo{
+.secao-fase{
 
-  background:#f1f5f9;
+  margin-top:30px;
 
-  padding:15px;
+  padding:22px;
+
+  border-radius:16px;
+
+  border:2px solid rgba(255,255,255,0.75);
+
+  box-shadow:0 6px 18px rgba(0,39,118,0.14);
+}
+
+.titulo-fase{
+
+  border-bottom:3px solid #ffdf00;
+
+  padding-bottom:10px;
+
+  margin-top:0;
+}
+
+.fase-grupos{
+
+  background:#dcfce7;
+}
+
+.fase-32{
+
+  background:#dbeafe;
+}
+
+.fase-oitavas{
+
+  background:#fef9c3;
+}
+
+.fase-quartas{
+
+  background:#ccfbf1;
+}
+
+.fase-semi{
+
+  background:#e0e7ff;
+}
+
+.fase-terceiro{
+
+  background:#fef3c7;
+}
+
+.fase-final{
+
+  background:linear-gradient(135deg, #fff4a3 0%, #ffdf00 100%);
+
+  border:3px solid #002776;
+}
+
+.fase-final .titulo-fase{
+
+  color:#002776;
+
+  border-bottom-color:#002776;
+}
+
+.grade-datas{
+
+  display:grid;
+
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+
+  gap:18px;
+}
+
+.card-data{
+
+  background:#f7fff8;
+
+  border:2px solid #b7e4c7;
 
   border-radius:10px;
 
-  margin-bottom:10px;
+  padding:16px;
+
+  text-align:left;
 }
+
+.card-data h3{
+
+  margin:0 0 14px 0;
+
+  color:#006b2e;
+
+  text-align:center;
+}
+
+.lista-jogos-data{
+
+  display:grid;
+
+  gap:10px;
+}
+
+.linha-jogo-compacta{
+
+  background:white;
+
+  border:1px solid #d9f99d;
+
+  border-radius:8px;
+
+  padding:12px;
+}
+
+.meta-jogo{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  color:#006b2e;
+
+  font-size:13px;
+
+  font-weight:bold;
+}
+
+.placar-jogo{
+
+  display:grid;
+
+  grid-template-columns:minmax(0, 1fr) 50px 18px 50px minmax(0, 1fr);
+
+  align-items:center;
+
+  gap:8px;
+
+  margin-top:10px;
+}
+
+.time-jogo{
+
+  font-weight:600;
+
+  overflow-wrap:anywhere;
+}
+
+.time-com-bandeira{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:6px;
+
+  max-width:100%;
+}
+
+.time-com-bandeira img{
+
+  width:24px;
+
+  height:18px;
+
+  object-fit:cover;
+
+  border-radius:2px;
+
+  box-shadow:0 0 0 1px rgba(15,23,42,0.08);
+
+  flex-shrink:0;
+}
+
+.time-com-bandeira span{
+
+  overflow-wrap:anywhere;
+}
+
+.time-a{
+
+  text-align:right;
+}
+
+.time-b{
+
+  text-align:left;
+}
+
+.separador-placar{
+
+  text-align:center;
+
+  font-weight:bold;
+}
+
+.card-jogo{
+
+  background:white;
+
+  padding:20px;
+
+  border-radius:12px;
+
+  margin-bottom:20px;
+
+  box-shadow:0 2px 10px rgba(0,39,118,0.12);
+}
+
 .linha-jogo{
 
   display:flex;
@@ -105,4 +381,420 @@ h2{
   padding:8px;
 
   text-align:center;
+}
+
+.travado{
+
+  margin-top:10px;
+
+  color:#dc2626;
+
+  font-weight:bold;
+}
+
+.data-jogo{
+
+  font-size:14px;
+
+  color:#006b2e;
+
+  margin-bottom:15px;
+
+  font-weight:600;
+}
+
+.btn-admin{
+
+  background:#dc2626;
+}
+
+#ranking{
+
+  margin-top:40px;
+}
+
+.tabela-ranking{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+  background:white;
+
+  border-radius:10px;
+
+  overflow:hidden;
+  display:block;
+
+  overflow-x:auto;
+}
+
+.tabela-ranking th{
+
+  background:#002776;
+
+  color:white;
+
+  padding:12px;
+}
+
+.tabela-ranking td{
+
+  padding:14px;
+
+  border-bottom:1px solid #e2e8f0;
+
+  text-align:center;
+
+  background:white;
+}
+
+.top1 td{
+
+  background:#fff4a3 !important;
+
+  font-weight:bold;
+}
+
+.top2 td{
+
+  background:#d9f99d !important;
+
+  font-weight:bold;
+}
+
+.top3 td{
+
+  background:#dbeafe !important;
+
+  font-weight:bold;
+}
+
+#premiacao{
+
+  margin-top:40px;
+}
+
+.box-premio{
+
+  background:white;
+
+  padding:20px;
+
+  border-radius:12px;
+
+  box-shadow:0 2px 10px rgba(0,39,118,0.12);
+
+  text-align:left;
+}
+
+.box-premio p{
+
+  margin:10px 0;
+
+  font-size:16px;
+}
+
+.pagina-regras{
+
+  max-width:1000px;
+
+  margin:auto;
+
+  color:#0f172a;
+}
+
+.pagina-grupos{
+
+  max-width:1200px;
+
+  margin:auto;
+
+  color:#0f172a;
+}
+
+.cabecalho-regras{
+
+  background:white;
+
+  padding:30px;
+
+  border-radius:14px;
+
+  border:3px solid #ffdf00;
+
+  box-shadow:0 8px 25px rgba(0,39,118,0.25);
+
+  text-align:center;
+}
+
+.cabecalho-regras p{
+
+  max-width:720px;
+
+  margin:0 auto;
+
+  line-height:1.6;
+}
+
+.trilha-copa{
+
+  display:grid;
+
+  gap:15px;
+
+  margin-top:25px;
+}
+
+.passo-regra{
+
+  display:flex;
+
+  gap:16px;
+
+  align-items:flex-start;
+
+  background:white;
+
+  padding:20px;
+
+  border-radius:12px;
+
+  border:1px solid #b7e4c7;
+
+  box-shadow:0 2px 10px rgba(0,39,118,0.12);
+}
+
+.passo-regra span{
+
+  min-width:42px;
+
+  height:42px;
+
+  border-radius:50%;
+
+  background:#009739;
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-weight:bold;
+
+  font-size:20px;
+}
+
+.passo-regra h2{
+
+  margin:0 0 8px 0;
+}
+
+.passo-regra p,
+.box-explicacao p{
+
+  margin:0;
+
+  line-height:1.6;
+}
+
+.box-explicacao{
+
+  background:white;
+
+  padding:25px;
+
+  border-radius:12px;
+
+  margin-top:25px;
+
+  border:1px solid #b7e4c7;
+
+  box-shadow:0 2px 10px rgba(0,39,118,0.12);
+}
+
+.cards-regras{
+
+  display:grid;
+
+  grid-template-columns:repeat(4, 1fr);
+
+  gap:12px;
+}
+
+.cards-regras article{
+
+  background:#f7fff8;
+
+  border:1px solid #b7e4c7;
+
+  border-radius:8px;
+
+  padding:15px;
+}
+
+.cards-regras strong{
+
+  display:block;
+
+  margin-bottom:8px;
+
+  color:#002776;
+}
+
+.acoes-regras{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-top:25px;
+}
+
+.grade-grupos{
+
+  display:grid;
+
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+
+  gap:16px;
+
+  margin-top:25px;
+}
+
+.card-grupo{
+
+  background:white;
+
+  border:2px solid #b7e4c7;
+
+  border-radius:12px;
+
+  padding:18px;
+
+  box-shadow:0 2px 10px rgba(0,39,118,0.12);
+}
+
+.card-grupo h2{
+
+  margin:0 0 14px 0;
+
+  text-align:center;
+}
+
+.card-grupo ul{
+
+  list-style:none;
+
+  padding:0;
+
+  margin:0;
+
+  display:grid;
+
+  gap:10px;
+}
+
+.card-grupo li{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  background:#f7fff8;
+
+  border:1px solid #b7e4c7;
+
+  border-radius:8px;
+
+  padding:10px;
+
+  font-weight:600;
+}
+
+.card-grupo img{
+
+  width:24px;
+
+  height:18px;
+
+  object-fit:cover;
+
+  border-radius:2px;
+
+  box-shadow:0 0 0 1px rgba(15,23,42,0.08);
+
+  flex-shrink:0;
+}
+
+.card-grupo li span{
+
+  text-align:center;
+
+  font-size:18px;
+}
+
+@media(max-width:768px){
+
+  .painel{
+
+    padding:15px;
+  }
+
+  .linha-jogo{
+
+    flex-wrap:wrap;
+  }
+
+  .grade-datas{
+
+    grid-template-columns:1fr;
+  }
+
+  .placar-jogo{
+
+    grid-template-columns:1fr 45px 18px 45px 1fr;
+  }
+
+  .input-gol{
+
+    width:45px;
+  }
+
+  button{
+
+    width:100%;
+
+    margin-top:10px;
+  }
+
+  .botao-link{
+
+    width:100%;
+  }
+
+  .passo-regra{
+
+    flex-direction:column;
+  }
+
+  .cards-regras{
+
+    grid-template-columns:1fr;
+  }
+
+  .grade-grupos{
+
+    grid-template-columns:1fr;
+  }
+
 }

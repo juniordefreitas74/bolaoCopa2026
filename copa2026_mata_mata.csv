@@ -1,0 +1,33 @@
+jogo_id,data,hora,fase,grupo,time_a,time_b,gol_a,gol_b,encerrado,proximo_jogo,lado
+73,2026-06-28,,fase_32,,2A,2B,,,NAO,90,A
+74,2026-06-29,,fase_32,,1E,3ABCDF,,,NAO,89,A
+75,2026-06-29,,fase_32,,1F,2C,,,NAO,90,B
+76,2026-06-29,,fase_32,,1C,2F,,,NAO,91,A
+77,2026-06-30,,fase_32,,1I,3CDFGH,,,NAO,89,B
+78,2026-06-30,,fase_32,,2E,2I,,,NAO,91,B
+79,2026-06-30,,fase_32,,1A,3CEFHI,,,NAO,92,A
+80,2026-07-01,,fase_32,,1L,3EHIJK,,,NAO,92,B
+81,2026-07-01,,fase_32,,1D,3BEFIJ,,,NAO,94,A
+82,2026-07-01,,fase_32,,1G,3AEHIJ,,,NAO,94,B
+83,2026-07-02,,fase_32,,2K,2L,,,NAO,93,A
+84,2026-07-02,,fase_32,,1H,2J,,,NAO,93,B
+85,2026-07-02,,fase_32,,1B,3EFGIJ,,,NAO,96,A
+86,2026-07-03,,fase_32,,1J,2H,,,NAO,95,A
+87,2026-07-03,,fase_32,,1K,3DEIJL,,,NAO,96,B
+88,2026-07-03,,fase_32,,2D,2G,,,NAO,95,B
+89,2026-07-04,,oitavas,,Vencedor 74,Vencedor 77,,,NAO,97,A
+90,2026-07-04,,oitavas,,Vencedor 73,Vencedor 75,,,NAO,97,B
+91,2026-07-05,,oitavas,,Vencedor 76,Vencedor 78,,,NAO,99,A
+92,2026-07-05,,oitavas,,Vencedor 79,Vencedor 80,,,NAO,99,B
+93,2026-07-06,,oitavas,,Vencedor 83,Vencedor 84,,,NAO,98,A
+94,2026-07-06,,oitavas,,Vencedor 81,Vencedor 82,,,NAO,98,B
+95,2026-07-07,,oitavas,,Vencedor 86,Vencedor 88,,,NAO,100,A
+96,2026-07-07,,oitavas,,Vencedor 85,Vencedor 87,,,NAO,100,B
+97,2026-07-09,,quartas,,Vencedor 89,Vencedor 90,,,NAO,101,A
+98,2026-07-10,,quartas,,Vencedor 93,Vencedor 94,,,NAO,101,B
+99,2026-07-11,,quartas,,Vencedor 91,Vencedor 92,,,NAO,102,A
+100,2026-07-11,,quartas,,Vencedor 95,Vencedor 96,,,NAO,102,B
+101,2026-07-14,,semi,,Vencedor 97,Vencedor 98,,,NAO,104,A
+102,2026-07-15,,semi,,Vencedor 99,Vencedor 100,,,NAO,104,B
+103,2026-07-18,,terceiro_lugar,,Perdedor 101,Perdedor 102,,,NAO,,
+104,2026-07-19,,final,,Vencedor 101,Vencedor 102,,,NAO,,

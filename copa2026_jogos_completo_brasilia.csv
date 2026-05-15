@@ -1,0 +1,105 @@
+jogo_id,data,hora,fase,grupo,time_a,time_b,gol_a,gol_b,encerrado,proximo_jogo,lado
+1,2026-06-11,16:00,grupos,A,México,África do Sul,,,NAO,,
+2,2026-06-11,23:00,grupos,A,Coreia do Sul,Tchéquia,,,NAO,,
+3,2026-06-12,16:00,grupos,B,Canadá,Bósnia e Herzegovina,,,NAO,,
+4,2026-06-12,22:00,grupos,D,Estados Unidos,Paraguai,,,NAO,,
+5,2026-06-13,22:00,grupos,C,Haiti,Escócia,,,NAO,,
+6,2026-06-13,01:00,grupos,D,Austrália,Turquia,,,NAO,,
+7,2026-06-13,19:00,grupos,C,Brasil,Marrocos,,,NAO,,
+8,2026-06-13,16:00,grupos,B,Catar,Suíça,,,NAO,,
+9,2026-06-14,20:00,grupos,E,Costa do Marfim,Equador,,,NAO,,
+10,2026-06-14,14:00,grupos,E,Alemanha,Curaçao,,,NAO,,
+11,2026-06-14,17:00,grupos,F,Holanda,Japão,,,NAO,,
+12,2026-06-14,23:00,grupos,F,Suécia,Tunísia,,,NAO,,
+13,2026-06-15,19:00,grupos,H,Arábia Saudita,Uruguai,,,NAO,,
+14,2026-06-15,13:00,grupos,H,Espanha,Cabo Verde,,,NAO,,
+15,2026-06-15,22:00,grupos,G,Irã,Nova Zelândia,,,NAO,,
+16,2026-06-15,16:00,grupos,G,Bélgica,Egito,,,NAO,,
+17,2026-06-16,16:00,grupos,I,França,Senegal,,,NAO,,
+18,2026-06-16,19:00,grupos,I,Iraque,Noruega,,,NAO,,
+19,2026-06-16,22:00,grupos,J,Argentina,Argélia,,,NAO,,
+20,2026-06-16,01:00,grupos,J,Áustria,Jordânia,,,NAO,,
+21,2026-06-17,20:00,grupos,L,Gana,Panamá,,,NAO,,
+22,2026-06-17,17:00,grupos,L,Inglaterra,Croácia,,,NAO,,
+23,2026-06-17,14:00,grupos,K,Portugal,Congo DR,,,NAO,,
+24,2026-06-17,23:00,grupos,K,Uzbequistão,Colômbia,,,NAO,,
+25,2026-06-18,13:00,grupos,A,Tchéquia,África do Sul,,,NAO,,
+26,2026-06-18,16:00,grupos,B,Suíça,Bósnia e Herzegovina,,,NAO,,
+27,2026-06-18,19:00,grupos,B,Canadá,Catar,,,NAO,,
+28,2026-06-18,22:00,grupos,A,México,Coreia do Sul,,,NAO,,
+29,2026-06-19,21:30,grupos,C,Brasil,Haiti,,,NAO,,
+30,2026-06-19,19:00,grupos,C,Escócia,Marrocos,,,NAO,,
+31,2026-06-20,00:00,grupos,D,Turquia,Paraguai,,,NAO,,
+32,2026-06-19,16:00,grupos,D,Estados Unidos,Austrália,,,NAO,,
+33,2026-06-20,17:00,grupos,E,Alemanha,Costa do Marfim,,,NAO,,
+34,2026-06-20,21:00,grupos,E,Equador,Curaçao,,,NAO,,
+35,2026-06-20,14:00,grupos,F,Holanda,Suécia,,,NAO,,
+36,2026-06-20,01:00,grupos,F,Tunísia,Japão,,,NAO,,
+37,2026-06-21,19:00,grupos,H,Uruguai,Cabo Verde,,,NAO,,
+38,2026-06-21,13:00,grupos,H,Espanha,Arábia Saudita,,,NAO,,
+39,2026-06-21,16:00,grupos,G,Bélgica,Irã,,,NAO,,
+40,2026-06-21,22:00,grupos,G,Nova Zelândia,Egito,,,NAO,,
+41,2026-06-22,21:00,grupos,I,Noruega,Senegal,,,NAO,,
+42,2026-06-22,18:00,grupos,I,França,Iraque,,,NAO,,
+43,2026-06-22,14:00,grupos,J,Argentina,Áustria,,,NAO,,
+44,2026-06-23,00:00,grupos,J,Jordânia,Argélia,,,NAO,,
+45,2026-06-23,17:00,grupos,L,Inglaterra,Gana,,,NAO,,
+46,2026-06-23,20:00,grupos,L,Panamá,Croácia,,,NAO,,
+47,2026-06-23,14:00,grupos,K,Portugal,Uzbequistão,,,NAO,,
+48,2026-06-23,23:00,grupos,K,Colômbia,Congo DR,,,NAO,,
+49,2026-06-24,19:00,grupos,C,Escócia,Brasil,,,NAO,,
+50,2026-06-24,19:00,grupos,C,Marrocos,Haiti,,,NAO,,
+51,2026-06-24,16:00,grupos,B,Suíça,Canadá,,,NAO,,
+52,2026-06-24,16:00,grupos,B,Bósnia e Herzegovina,Catar,,,NAO,,
+53,2026-06-24,22:00,grupos,A,Tchéquia,México,,,NAO,,
+54,2026-06-24,22:00,grupos,A,África do Sul,Coreia do Sul,,,NAO,,
+55,2026-06-25,17:00,grupos,E,Curaçao,Costa do Marfim,,,NAO,,
+56,2026-06-25,17:00,grupos,E,Equador,Alemanha,,,NAO,,
+57,2026-06-25,20:00,grupos,F,Japão,Suécia,,,NAO,,
+58,2026-06-25,20:00,grupos,F,Tunísia,Holanda,,,NAO,,
+59,2026-06-25,23:00,grupos,D,Turquia,Estados Unidos,,,NAO,,
+60,2026-06-25,23:00,grupos,D,Paraguai,Austrália,,,NAO,,
+61,2026-06-26,16:00,grupos,I,Senegal,Iraque,,,NAO,,
+62,2026-06-26,16:00,grupos,I,Noruega,França,,,NAO,,
+63,2026-06-27,00:00,grupos,G,Egito,Irã,,,NAO,,
+64,2026-06-27,00:00,grupos,G,Nova Zelândia,Bélgica,,,NAO,,
+65,2026-06-26,21:00,grupos,H,Cabo Verde,Arábia Saudita,,,NAO,,
+66,2026-06-26,21:00,grupos,H,Uruguai,Espanha,,,NAO,,
+67,2026-06-27,18:00,grupos,L,Panamá,Inglaterra,,,NAO,,
+68,2026-06-27,18:00,grupos,L,Croácia,Gana,,,NAO,,
+69,2026-06-27,23:00,grupos,J,Argélia,Áustria,,,NAO,,
+70,2026-06-27,23:00,grupos,J,Jordânia,Argentina,,,NAO,,
+71,2026-06-27,20:30,grupos,K,Colômbia,Portugal,,,NAO,,
+72,2026-06-27,20:30,grupos,K,Congo DR,Uzbequistão,,,NAO,,
+73,2026-06-28,16:00,fase_32,,2A,2B,,,NAO,90,A
+74,2026-06-29,17:30,fase_32,,1E,3ABCDF,,,NAO,89,A
+75,2026-06-29,22:00,fase_32,,1F,2C,,,NAO,90,B
+76,2026-06-29,14:00,fase_32,,1C,2F,,,NAO,91,A
+77,2026-06-30,18:00,fase_32,,1I,3CDFGH,,,NAO,89,B
+78,2026-06-30,14:00,fase_32,,2E,2I,,,NAO,91,B
+79,2026-06-30,22:00,fase_32,,1A,3CEFHI,,,NAO,92,A
+80,2026-07-01,13:00,fase_32,,1L,3EHIJK,,,NAO,92,B
+81,2026-07-01,21:00,fase_32,,1D,3BEFIJ,,,NAO,94,A
+82,2026-07-01,17:00,fase_32,,1G,3AEHIJ,,,NAO,94,B
+83,2026-07-02,20:00,fase_32,,2K,2L,,,NAO,93,A
+84,2026-07-02,16:00,fase_32,,1H,2J,,,NAO,93,B
+85,2026-07-03,00:00,fase_32,,1B,3EFGIJ,,,NAO,96,A
+86,2026-07-03,19:00,fase_32,,1J,2H,,,NAO,95,A
+87,2026-07-03,22:30,fase_32,,1K,3DEIJL,,,NAO,96,B
+88,2026-07-03,15:00,fase_32,,2D,2G,,,NAO,95,B
+89,2026-07-04,18:00,oitavas,,Vencedor 74,Vencedor 77,,,NAO,97,A
+90,2026-07-04,14:00,oitavas,,Vencedor 73,Vencedor 75,,,NAO,97,B
+91,2026-07-05,17:00,oitavas,,Vencedor 76,Vencedor 78,,,NAO,99,A
+92,2026-07-05,21:00,oitavas,,Vencedor 79,Vencedor 80,,,NAO,99,B
+93,2026-07-06,16:00,oitavas,,Vencedor 83,Vencedor 84,,,NAO,98,A
+94,2026-07-06,21:00,oitavas,,Vencedor 81,Vencedor 82,,,NAO,98,B
+95,2026-07-07,13:00,oitavas,,Vencedor 86,Vencedor 88,,,NAO,100,A
+96,2026-07-07,17:00,oitavas,,Vencedor 85,Vencedor 87,,,NAO,100,B
+97,2026-07-09,17:00,quartas,,Vencedor 89,Vencedor 90,,,NAO,101,A
+98,2026-07-10,16:00,quartas,,Vencedor 93,Vencedor 94,,,NAO,101,B
+99,2026-07-11,18:00,quartas,,Vencedor 91,Vencedor 92,,,NAO,102,A
+100,2026-07-11,22:00,quartas,,Vencedor 95,Vencedor 96,,,NAO,102,B
+101,2026-07-14,16:00,semi,,Vencedor 97,Vencedor 98,,,NAO,104,A
+102,2026-07-15,16:00,semi,,Vencedor 99,Vencedor 100,,,NAO,104,B
+103,2026-07-18,18:00,terceiro_lugar,,Perdedor 101,Perdedor 102,,,NAO,,
+104,2026-07-19,16:00,final,,Vencedor 101,Vencedor 102,,,NAO,,
