@@ -407,7 +407,8 @@ function listarUsuariosAdminSeguro_(sessao) {
       ativo: linha[cabecalho.ativo],
       trocaObrigatoria: linha[cabecalho.troca_obrigatoria],
       loginAlterado: linha[cabecalho.login_alterado],
-      pago: cabecalho.pago === undefined ? "" : linha[cabecalho.pago]
+      pago: cabecalho.pago === undefined ? "" : linha[cabecalho.pago],
+      pagamento: cabecalho.pago === undefined ? "" : linha[cabecalho.pago]
     }));
 
   return {

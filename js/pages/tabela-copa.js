@@ -709,8 +709,11 @@ async function carregarTabelaCopa() {
   const status = document.getElementById("statusTabela");
 
   try {
-    const resposta = await fetch(API + "?acao=listarJogos");
-    const dados = await resposta.json();
+    const dados =
+      await chamarApiPublica(
+        API + "?acao=listarJogos"
+      );
+
     const jogos =
       aplicarRascunhoResultadosOficiais(
         dados.jogos || []
@@ -750,6 +753,7 @@ async function carregarTabelaCopa() {
         : "A fase de 32 aparece quando todos os resultados da fase de grupos estiverem salvos. Faltam: " +
           faltantes.map(jogo => jogo.jogo_id).join(", ");
   } catch (erro) {
+    console.error("Erro ao carregar tabela da Copa:", erro);
     status.innerHTML =
       "N&atilde;o foi poss&iacute;vel carregar a tabela agora. Tente novamente em instantes.";
   }

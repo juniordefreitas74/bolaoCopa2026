@@ -24,6 +24,12 @@ function escaparHtml(valor) {
     .replace(/'/g, "&#039;");
 }
 
+function usuarioEhAdminLista(usuario) {
+  return String(usuario.admin || "").toUpperCase() === "SIM" ||
+    String(usuario.nome || "").trim().toLowerCase() === "administrador" ||
+    String(usuario.login || "").trim().toLowerCase() === "admin";
+}
+
 
 async function carregarJogosParticipantes() {
   const dados =
@@ -358,7 +364,11 @@ async function carregarParticipantes() {
     });
 
     const resultados =
-    dadosParticipantes.usuarios.map(usuario =>
+    dadosParticipantes.usuarios
+    .filter(usuario =>
+      !usuarioEhAdminLista(usuario)
+    )
+    .map(usuario =>
       calcularStatusParticipante(
         usuario,
         palpitesPorUsuario[usuario.id] || []

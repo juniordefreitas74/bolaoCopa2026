@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "test": "node tests/fifa-terceiros.test.js"
+  }
+}

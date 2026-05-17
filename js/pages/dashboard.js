@@ -155,6 +155,10 @@ function valorPlacarInvalido(valor) {
   return Number(valor) < 0 || Number.isNaN(Number(valor));
 }
 
+function ehJogoMataMata(jogo) {
+  return jogo && jogo.fase !== "grupos";
+}
+
 function obterClassificadoPalpite(jogoId) {
   const palpite =
   obterPalpiteJogo(jogoId);
@@ -322,9 +326,92 @@ function atualizarAvisoPalpites() {
     }
   }
 
+  const resumoFaltantes =
+  document.getElementById("resumoFaltantesPalpites");
+
+  if (resumoFaltantes) {
+    resumoFaltantes.innerHTML =
+    renderizarResumoFaltantesPalpites(faltantes);
+  }
+
   atualizarResumoUsuario(faltantes);
 
   return faltantes;
+}
+
+function renderizarResumoFaltantesPalpites(faltantes) {
+  if (faltantes.length === 0) {
+    return `
+      <section class="painel-faltantes-palpites completo">
+        <div class="topo-faltantes-palpites">
+          <h3>Palpites completos</h3>
+          <span>0 faltando</span>
+        </div>
+      </section>
+    `;
+  }
+
+  const fases =
+  separarFasesDosJogos(faltantes);
+
+  return `
+    <section class="painel-faltantes-palpites">
+      <div class="topo-faltantes-palpites">
+        <h3>Jogos que faltam preencher</h3>
+        <span>${faltantes.length} pendentes</span>
+      </div>
+
+      ${ordemFases.map(fase => {
+        const jogos =
+        fases[fase] || [];
+
+        if (jogos.length === 0) {
+          return "";
+        }
+
+        return `
+          <div class="grupo-faltantes-palpites">
+            <h4>${titulosFase[fase] || fase}</h4>
+            <div class="lista-faltantes-palpites">
+              ${jogos.map(jogo => `
+                <button
+                  type="button"
+                  onclick="irParaJogoPalpite('${jogo.jogo_id}')"
+                >
+                  <strong>Jogo ${jogo.jogo_id}</strong>
+                  <small>
+                    ${escaparHtml(obterTimeDoJogo(jogo, "A"))}
+                    x
+                    ${escaparHtml(obterTimeDoJogo(jogo, "B"))}
+                  </small>
+                </button>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </section>
+  `;
+}
+
+function irParaJogoPalpite(jogoId) {
+  const elemento =
+  document.getElementById("jogo-palpite-" + jogoId);
+
+  if (!elemento) {
+    return;
+  }
+
+  elemento.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+
+  elemento.classList.add("jogo-palpite-destacado");
+
+  window.setTimeout(() => {
+    elemento.classList.remove("jogo-palpite-destacado");
+  }, 1800);
 }
 
 function obterResumoPalpites(faltantesInformados) {
@@ -493,7 +580,7 @@ function renderizarDashboardAdmin() {
 
   const participantes =
   adminUsuarios.filter(item =>
-    item.admin !== "SIM"
+    !usuarioEhParticipanteAdmin(item)
   );
 
   const completos =
@@ -558,7 +645,7 @@ function renderizarDashboardAdmin() {
 
         <article>
           <span>Total arrecadado</span>
-          <strong>${formatarValorReais(resumoPremiacaoAtual && resumoPremiacaoAtual.totalArrecadado)}</strong>
+          <strong>${formatarValorReais(obterTotalArrecadadoAdmin(participantes.length))}</strong>
         </article>
 
         <article>
@@ -645,6 +732,26 @@ function palpiteAdminPreenchido(palpite, jogo) {
   return true;
 }
 
+function usuarioEhParticipanteAdmin(item) {
+  return String(item.admin || "").toUpperCase() === "SIM" ||
+    String(item.nome || "").trim().toLowerCase() === "administrador" ||
+    String(item.login || "").trim().toLowerCase() === "admin";
+}
+
+function obterTotalArrecadadoAdmin(totalParticipantes) {
+  const valorInscricao =
+  Number(configSistema.valor_inscricao || 0);
+
+  if (valorInscricao > 0) {
+    return totalParticipantes * valorInscricao;
+  }
+
+  return resumoPremiacaoAtual &&
+    resumoPremiacaoAtual.totalArrecadado
+    ? resumoPremiacaoAtual.totalArrecadado
+    : 0;
+}
+
 function calcularStatusAdminParticipantes(dados) {
   if (Array.isArray(dados.participantes)) {
     return dados.participantes;
@@ -652,7 +759,7 @@ function calcularStatusAdminParticipantes(dados) {
 
   const usuarios =
   (dados.usuarios || []).filter(item =>
-    item.admin !== "SIM"
+    !usuarioEhParticipanteAdmin(item)
   );
 
   const palpitesPorUsuario = {};
@@ -1131,6 +1238,14 @@ function escaparHtml(valor) {
     .replace(/'/g, "&#039;");
 }
 
+function usuarioPago(item) {
+  return String(
+    item.pago ||
+    item.pagamento ||
+    ""
+  ).toUpperCase() === "SIM";
+}
+
 async function carregarUsuariosAdmin() {
   if (usuario.admin !== "SIM") {
     return;
@@ -1162,7 +1277,9 @@ async function carregarUsuariosAdmin() {
     }
 
     const usuarios =
-    dados.usuarios || [];
+    (dados.usuarios || []).filter(item =>
+      !usuarioEhParticipanteAdmin(item)
+    );
 
     adminUsuarios = usuarios;
     renderizarDashboardAdmin();
@@ -1189,7 +1306,7 @@ async function carregarUsuariosAdmin() {
             ${item.trocaObrigatoria === "SIM" ? " - acesso provis&oacute;rio" : ""}
             ${item.ativo === "SIM" ? "" : " - bloqueado"}
             ${
-              item.pago === "SIM" || item.pagamento === "SIM"
+              usuarioPago(item)
               ? " - pago"
               : " - pagamento pendente"
             }
@@ -1199,11 +1316,11 @@ async function carregarUsuariosAdmin() {
         <div class="acoes-usuario-admin">
           <button
             type="button"
-            class="botao-pagamento-usuario ${item.pago === "SIM" || item.pagamento === "SIM" ? "pago" : ""}"
-            title="Marcar pagamento"
-            onclick="marcarPagamentoUsuario('${encodeURIComponent(item.id)}', '${item.pago === "SIM" || item.pagamento === "SIM" ? "NAO" : "SIM"}')"
+            class="botao-pagamento-usuario ${usuarioPago(item) ? "pago" : ""}"
+            title="${usuarioPago(item) ? "Pagamento marcado" : "Marcar pagamento"}"
+            onclick="marcarPagamentoUsuario('${encodeURIComponent(item.id)}', '${usuarioPago(item) ? "NAO" : "SIM"}')"
           >
-            $
+            ${usuarioPago(item) ? "Pago" : "$"}
           </button>
 
           <button
@@ -1379,6 +1496,13 @@ async function marcarPagamentoUsuario(usuarioIdCodificado, pago) {
   const usuarioId =
   decodeURIComponent(usuarioIdCodificado);
 
+  mostrarFeedback(
+    pago === "SIM"
+    ? "Marcando pagamento..."
+    : "Removendo pagamento...",
+    "aviso"
+  );
+
   try {
     const dados =
     await chamarApiProtegida(
@@ -1406,7 +1530,7 @@ async function marcarPagamentoUsuario(usuarioIdCodificado, pago) {
     await carregarUsuariosAdmin();
   } catch (erro) {
     mostrarFeedback(
-      "Para marcar pagamento, implemente a rota marcarPagamentoUsuario no Apps Script.",
+      "Bot\u00e3o $ marca pagamento. Falta instalar a rota marcarPagamentoUsuario no Apps Script.",
       "aviso"
     );
   }
@@ -2413,6 +2537,7 @@ function renderizarJogoPalpite(jogo) {
 
   return `
     <article
+      id="jogo-palpite-${jogo.jogo_id}"
       class="jogo-rodada jogo-palpite"
       data-jogo-id="${jogo.jogo_id}"
     >
@@ -2787,14 +2912,23 @@ function renderizarJogosParticipante(fases) {
     ${renderizarAtalhosFases()}
 
     <div id="avisoPalpites" class="aviso-palpites"></div>
+
+    <div id="resumoFaltantesPalpites"></div>
   `;
 
-  html += letras.map(letra =>
-    renderizarGrupoParticipante(
-      letra,
-      grupos[letra]
-    )
-  ).join("");
+  html += `
+    <section class="secao-fase fase-grupos" id="fase-grupos">
+      <h2 class="titulo-fase">Fase de Grupos</h2>
+      <div class="grade-grupos-palpite">
+        ${letras.map(letra =>
+          renderizarGrupoParticipante(
+            letra,
+            grupos[letra]
+          )
+        ).join("")}
+      </div>
+    </section>
+  `;
 
   html += renderizarMataMataParticipante(fases);
 
@@ -2817,9 +2951,99 @@ async function carregarPalpites() {
     }
   );
 
-  dados.palpites.forEach(p => {
-    palpitesUsuario[p.jogo_id] = p;
+  if (dados.erro) {
+    mostrarFeedback(
+      dados.mensagem || "N\u00e3o foi poss\u00edvel carregar seus palpites.",
+      "erro"
+    );
+    return;
+  }
+
+  const palpites =
+  Array.isArray(dados.palpites)
+  ? dados.palpites
+  : [];
+
+  console.log(
+    "Palpites carregados para usuario",
+    usuario.id,
+    palpites.length,
+    palpites
+  );
+
+  palpites.forEach(p => {
+    const jogoId =
+    String(
+      p.jogo_id ??
+      p.jogoId ??
+      p.jogo ??
+      ""
+    ).trim();
+
+    if (!jogoId) {
+      return;
+    }
+
+    const palpiteNormalizado = {
+      ...p,
+      jogo_id: jogoId,
+      palpite_a: normalizarValorPlacar(
+        p.palpite_a ??
+        p.palpiteA ??
+        p.gol_a ??
+        ""
+      ),
+      palpite_b: normalizarValorPlacar(
+        p.palpite_b ??
+        p.palpiteB ??
+        p.gol_b ??
+        ""
+      ),
+      time_a: p.time_a || p.timeA || "",
+      time_b: p.time_b || p.timeB || "",
+      classificado: p.classificado || ""
+    };
+
+    const existente =
+    palpitesUsuario[jogoId];
+
+    if (
+      !existente ||
+      palpiteMaisCompleto(palpiteNormalizado, existente)
+    ) {
+      palpitesUsuario[jogoId] = palpiteNormalizado;
+    }
   });
+}
+
+function palpiteMaisCompleto(novo, atual) {
+  const pontuar = palpite => {
+    let pontos = 0;
+
+    if (normalizarValorPlacar(palpite.palpite_a) !== "") {
+      pontos++;
+    }
+
+    if (normalizarValorPlacar(palpite.palpite_b) !== "") {
+      pontos++;
+    }
+
+    if (palpite.time_a) {
+      pontos++;
+    }
+
+    if (palpite.time_b) {
+      pontos++;
+    }
+
+    if (palpite.classificado) {
+      pontos++;
+    }
+
+    return pontos;
+  };
+
+  return pontuar(novo) >= pontuar(atual);
 }
 
 function criarEstadoPalpites() {
@@ -3114,15 +3338,86 @@ function placarPareceAbsurdo(golA, golB) {
   return Number(golA) > 20 || Number(golB) > 20;
 }
 
-function registrarLogResultado(jogo, golA, golB) {
+function validarPenaltisResultadoOficial(jogo, golA, golB) {
+  const penaltis =
+  obterPenaltisResultadoOficial(jogo.jogo_id);
+
+  if (
+    !ehJogoMataMata(jogo) ||
+    String(golA) !== String(golB)
+  ) {
+    return {
+      valido: true,
+      penaltiA: "",
+      penaltiB: ""
+    };
+  }
+
+  if (
+    penaltis.penalti_a === "" ||
+    penaltis.penalti_b === "" ||
+    valorPlacarInvalido(penaltis.penalti_a) ||
+    valorPlacarInvalido(penaltis.penalti_b)
+  ) {
+    return {
+      valido: false,
+      mensagem:
+      "Jogo " + jogo.jogo_id +
+      ": empate no mata-mata precisa do placar dos p\u00eanaltis."
+    };
+  }
+
+  if (Number(penaltis.penalti_a) === Number(penaltis.penalti_b)) {
+    return {
+      valido: false,
+      mensagem:
+      "Jogo " + jogo.jogo_id +
+      ": p\u00eanaltis n\u00e3o podem terminar empatados."
+    };
+  }
+
+  return {
+    valido: true,
+    penaltiA: penaltis.penalti_a,
+    penaltiB: penaltis.penalti_b
+  };
+}
+
+function formatarResultadoComPenaltis(golA, golB, penaltiA, penaltiB) {
+  let texto =
+  golA + " x " + golB;
+
+  if (
+    penaltiA !== "" &&
+    penaltiA !== undefined &&
+    penaltiB !== "" &&
+    penaltiB !== undefined
+  ) {
+    texto += " (p\u00eanaltis " + penaltiA + " x " + penaltiB + ")";
+  }
+
+  return texto;
+}
+
+function registrarLogResultado(jogo, golA, golB, penaltiA, penaltiB) {
   const anterior =
   normalizarValorPlacar(jogo.gol_a) === "" ||
   normalizarValorPlacar(jogo.gol_b) === ""
   ? "sem resultado"
-  : jogo.gol_a + " x " + jogo.gol_b;
+  : formatarResultadoComPenaltis(
+    jogo.gol_a,
+    jogo.gol_b,
+    jogo.penalti_a,
+    jogo.penalti_b
+  );
 
   const novo =
-  golA + " x " + golB;
+  formatarResultadoComPenaltis(
+    golA,
+    golB,
+    penaltiA,
+    penaltiB
+  );
 
   if (anterior === novo) {
     return;
@@ -3151,14 +3446,18 @@ async function salvarResultadoOficial(item) {
     {
       jogo_id: item.jogo.jogo_id,
       gol_a: item.golA,
-      gol_b: item.golB
+      gol_b: item.golB,
+      penalti_a: item.penaltiA || "",
+      penalti_b: item.penaltiB || ""
     }
   );
 
   registrarLogResultado(
     item.jogo,
     item.golA,
-    item.golB
+    item.golB,
+    item.penaltiA || "",
+    item.penaltiB || ""
   );
 }
 
@@ -3205,6 +3504,18 @@ async function salvarResultadoIndividual(jogoId) {
     return;
   }
 
+  const validacaoPenaltis =
+  validarPenaltisResultadoOficial(
+    jogo,
+    inputA.value,
+    inputB.value
+  );
+
+  if (!validacaoPenaltis.valido) {
+    mostrarFeedback(validacaoPenaltis.mensagem, "erro");
+    return;
+  }
+
   try {
     definirLoadingBotao(
       botao,
@@ -3216,7 +3527,9 @@ async function salvarResultadoIndividual(jogoId) {
     await salvarResultadoOficial({
       jogo,
       golA: inputA.value,
-      golB: inputB.value
+      golB: inputB.value,
+      penaltiA: validacaoPenaltis.penaltiA,
+      penaltiB: validacaoPenaltis.penaltiB
     });
 
     mostrarFeedback(
@@ -3572,9 +3885,7 @@ function montarPalpitesParaSalvar() {
   const palpites =
   Object.values(estado)
   .filter(item =>
-    temPalpiteCompleto(item) ||
-    item.time_a !== item.jogo.time_a ||
-    item.time_b !== item.jogo.time_b
+    palpitePodeSerSalvo(item)
   )
   .map(item => ({
     jogo_id: item.jogo_id,
@@ -3589,6 +3900,29 @@ function montarPalpitesParaSalvar() {
     palpites,
     avisos
   };
+}
+
+function palpitePodeSerSalvo(item) {
+  if (!temPalpiteCompleto(item)) {
+    return false;
+  }
+
+  if (
+    valorPlacarInvalido(item.palpite_a) ||
+    valorPlacarInvalido(item.palpite_b)
+  ) {
+    return false;
+  }
+
+  if (
+    item.fase !== "grupos" &&
+    Number(item.palpite_a) === Number(item.palpite_b) &&
+    !item.classificado
+  ) {
+    return false;
+  }
+
+  return true;
 }
 
 function validarPalpitesParaSalvar() {
@@ -3646,6 +3980,61 @@ function validarPalpitesParaSalvar() {
   return erros;
 }
 
+function obterAvisosPalpitesPendentes() {
+  const estado =
+  criarEstadoPalpites();
+
+  gerarFase32DoPalpite(estado);
+
+  const avisos = [];
+
+  Object.values(estado).forEach(item => {
+    const jogoComecado =
+    item.palpite_a !== "" ||
+    item.palpite_b !== "" ||
+    Boolean(item.classificado);
+
+    if (!jogoComecado || palpitePodeSerSalvo(item)) {
+      return;
+    }
+
+    if (
+      item.palpite_a === "" ||
+      item.palpite_b === ""
+    ) {
+      avisos.push(
+        "Jogo " + item.jogo_id +
+        ": ficou pendente porque o placar est\u00e1 incompleto."
+      );
+      return;
+    }
+
+    if (
+      valorPlacarInvalido(item.palpite_a) ||
+      valorPlacarInvalido(item.palpite_b)
+    ) {
+      avisos.push(
+        "Jogo " + item.jogo_id +
+        ": ficou pendente porque o placar est\u00e1 inv\u00e1lido."
+      );
+      return;
+    }
+
+    if (
+      item.fase !== "grupos" &&
+      Number(item.palpite_a) === Number(item.palpite_b) &&
+      !item.classificado
+    ) {
+      avisos.push(
+        "Jogo " + item.jogo_id +
+        ": ficou pendente porque falta escolher o classificado."
+      );
+    }
+  });
+
+  return avisos;
+}
+
 function atualizarChaveamentoEmMemoria() {
   const estado =
   criarEstadoPalpites();
@@ -3680,20 +4069,8 @@ async function salvarTodosPalpites() {
   const faltantes =
   atualizarAvisoPalpites();
 
-  const errosValidacao =
-  validarPalpitesParaSalvar();
-
-  if (errosValidacao.length > 0) {
-    mostrarFeedback(
-      "Corrija os campos destacados antes de salvar.",
-      "erro"
-    );
-    alert(
-      "Corrija os palpites antes de salvar:\n\n" +
-      errosValidacao.join("\n")
-    );
-    return;
-  }
+  const avisosPendentes =
+  obterAvisosPalpitesPendentes();
 
   const resultado =
   montarPalpitesParaSalvar();
@@ -3703,9 +4080,19 @@ async function salvarTodosPalpites() {
 
   if (palpites.length === 0) {
     mostrarFeedback(
-      "Nenhum palpite preenchido para salvar.",
-      "erro"
+      avisosPendentes.length > 0
+      ? "Nenhum palpite completo para salvar. Corrija os jogos pendentes."
+      : "Nenhum palpite preenchido para salvar.",
+      avisosPendentes.length > 0 ? "aviso" : "erro"
     );
+
+    if (avisosPendentes.length > 0) {
+      alert(
+        "Os jogos abaixo n\u00e3o foram salvos porque ainda est\u00e3o incompletos:\n\n" +
+        avisosPendentes.join("\n")
+      );
+    }
+
     return;
   }
 
@@ -3751,6 +4138,19 @@ async function salvarTodosPalpites() {
     "sucesso"
   );
 
+  if (avisosPendentes.length > 0) {
+    mostrarFeedback(
+      "Palpites completos salvos. Alguns jogos ficaram pendentes.",
+      "aviso"
+    );
+
+    alert(
+      "Salvei os palpites completos.\n\n" +
+      "Estes jogos ficaram pendentes para voc\u00ea completar depois:\n\n" +
+      avisosPendentes.join("\n")
+    );
+  }
+
   if (faltantes.length > 0) {
     mostrarFeedback(
       "Faltam " +
@@ -3766,6 +4166,8 @@ async function salvarTodosPalpites() {
 
   await carregarPalpites();
   await carregarJogos();
+  await carregarRanking();
+  await carregarPremiacao();
 }
 
 async function salvarTodosResultados() {
@@ -3832,6 +4234,41 @@ async function salvarTodosResultados() {
     );
     return;
   }
+
+  const penaltisInvalidos =
+  jogosParaSalvar
+  .map(item => ({
+    item,
+    validacao: validarPenaltisResultadoOficial(
+      item.jogo,
+      item.golA,
+      item.golB
+    )
+  }))
+  .find(resultado =>
+    !resultado.validacao.valido
+  );
+
+  if (penaltisInvalidos) {
+    alert(penaltisInvalidos.validacao.mensagem);
+    atualizarBotaoSalvarResultados(
+      "Salvar Resultados Oficiais",
+      false
+    );
+    return;
+  }
+
+  jogosParaSalvar.forEach(item => {
+    const validacao =
+    validarPenaltisResultadoOficial(
+      item.jogo,
+      item.golA,
+      item.golB
+    );
+
+    item.penaltiA = validacao.penaltiA;
+    item.penaltiB = validacao.penaltiB;
+  });
 
   atualizarBotaoSalvarResultados(
     "Salvando 0/" + jogosParaSalvar.length,

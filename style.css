@@ -47,12 +47,12 @@ body{
 
   justify-items:center;
 
-  gap:18px;
+  gap:10px;
 }
 
 .login-logo{
 
-  width:min(364px, 100%);
+  width:min(328px, 100%);
 
   height:auto;
 
@@ -1005,6 +1005,40 @@ html.tema-noite .form-reset-usuario{
   border-color:#92400e;
 }
 
+html.tema-noite .painel-faltantes-palpites{
+
+  background:#111827;
+
+  color:#e5e7eb;
+
+  border-color:#334155;
+
+  border-left-color:#10b981;
+}
+
+html.tema-noite .topo-faltantes-palpites h3,
+html.tema-noite .grupo-faltantes-palpites h4{
+
+  color:#f8fafc;
+}
+
+html.tema-noite .topo-faltantes-palpites span,
+html.tema-noite .lista-faltantes-palpites small{
+
+  color:#a7f3d0;
+}
+
+html.tema-noite .lista-faltantes-palpites button{
+
+  background:#ffdf00;
+
+  color:#052e16;
+
+  border-color:#d4b800;
+
+  border-left-color:#10b981;
+}
+
 html.tema-noite .tabela-ranking,
 html.tema-noite .tabela-ranking td,
 html.tema-noite .tabela-classificacao-copa,
@@ -1537,6 +1571,106 @@ html.tema-dia .admin-page .linha-usuario-admin.usuario-bloqueado span{
   color:#d1fae5;
 }
 
+html.tema-dia .admin-page .card-data,
+html.tema-dia .admin-page .linha-jogo-compacta,
+html.tema-dia .admin-page .box-premio,
+html.tema-dia .admin-page .premio-destaque{
+
+  background:#f7fff8;
+
+  border-color:#8bcf9e;
+
+  border-left-color:#009739;
+
+  color:#0f172a;
+}
+
+html.tema-dia .admin-page .box-premio p,
+html.tema-dia .admin-page .box-premio strong,
+html.tema-dia .admin-page .premio-destaque strong,
+html.tema-dia .admin-page .linha-jogo-compacta,
+html.tema-dia .admin-page .time-jogo,
+html.tema-dia .admin-page .separador-placar{
+
+  color:#0f172a;
+}
+
+html.tema-dia .admin-page .card-data h3,
+html.tema-dia .admin-page .meta-jogo,
+html.tema-dia .admin-page .placar-penaltis,
+html.tema-dia .admin-page .rotulo-penaltis,
+html.tema-dia .admin-page .premio-destaque span{
+
+  color:#006b2e;
+}
+
+html.tema-dia .admin-page .input-gol,
+html.tema-dia .admin-page .input-penalti{
+
+  background:#fff;
+
+  color:#0f172a;
+
+  border-color:#94a3b8;
+}
+
+html.tema-dia .admin-page .premio-ouro{
+
+  background:#fff4a3;
+}
+
+html.tema-dia .admin-page .premio-prata{
+
+  background:#f8fafc;
+}
+
+html.tema-dia .admin-page .premio-bronze{
+
+  background:#ffedd5;
+}
+
+html.tema-dia .admin-page .tabela-ranking{
+
+  background:white;
+}
+
+html.tema-dia .admin-page .tabela-ranking th{
+
+  background:#002776;
+
+  color:white;
+}
+
+html.tema-dia .admin-page .tabela-ranking td{
+
+  background:white;
+
+  color:#0f172a;
+
+  border-bottom-color:#dbe3ee;
+}
+
+html.tema-dia .admin-page .tabela-ranking tr.top1 td{
+
+  background:#fff4a3 !important;
+
+  color:#0f172a !important;
+}
+
+html.tema-dia .admin-page .tabela-ranking tr.top2 td{
+
+  background:#d9f99d !important;
+
+  color:#0f172a !important;
+}
+
+html.tema-dia .admin-page .tabela-ranking tr.top3 td{
+
+  background:#dbeafe !important;
+
+  color:#0f172a !important;
+}
+
 .atalhos-fases{
 
   position:sticky;
@@ -1996,21 +2130,38 @@ html.tema-dia .admin-page .linha-usuario-admin.usuario-bloqueado span{
   margin-top:12px;
 }
 
+.lista-admin-compacta{
+
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+}
+
 .lista-admin-compacta button{
 
   width:100%;
 
   margin:0;
 
-  padding:10px;
+  min-height:54px;
 
-  background:#111827;
+  padding:7px 8px;
 
-  color:#e5e7eb;
+  background:#ffdf00;
 
-  border:1px solid #334155;
+  color:#052e16;
+
+  border:1px solid #d4b800;
+
+  border-left:3px solid #10b981;
+
+  border-radius:7px;
 
   text-align:left;
+
+  font-size:12px;
+
+  font-weight:800;
+
+  line-height:1.2;
 }
 
 .lista-admin-compacta small{
@@ -2019,7 +2170,17 @@ html.tema-dia .admin-page .linha-usuario-admin.usuario-bloqueado span{
 
   margin-top:3px;
 
-  color:#a7f3d0;
+  color:#006b2e;
+
+  font-size:10px;
+
+  font-weight:800;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+  white-space:nowrap;
 }
 
 .lista-logs-admin article{
@@ -2053,9 +2214,9 @@ html.tema-dia .admin-page .linha-usuario-admin.usuario-bloqueado span{
 
 .botao-pagamento-usuario{
 
-  width:38px !important;
+  width:58px !important;
 
-  min-width:38px !important;
+  min-width:58px !important;
 
   height:38px;
 
@@ -2068,11 +2229,17 @@ html.tema-dia .admin-page .linha-usuario-admin.usuario-bloqueado span{
   background:#64748b !important;
 
   color:white !important;
+
+  font-size:12px;
+
+  font-weight:900;
 }
 
 .botao-pagamento-usuario.pago{
 
   background:#059669 !important;
+
+  color:white !important;
 }
 
 .acoes-resultado-jogo{
@@ -2130,6 +2297,138 @@ html.tema-dia .admin-page .linha-usuario-admin.usuario-bloqueado span{
   background:#f7fff8;
 
   color:#006b2e;
+}
+
+.painel-faltantes-palpites{
+
+  margin:16px 0 22px 0;
+
+  padding:16px;
+
+  border:1px solid #8bcf9e;
+
+  border-left:4px solid #009739;
+
+  border-radius:10px;
+
+  background:#f7fff8;
+}
+
+.painel-faltantes-palpites.completo{
+
+  background:#ecfdf5;
+}
+
+.topo-faltantes-palpites{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  margin-bottom:12px;
+}
+
+.topo-faltantes-palpites h3{
+
+  margin:0;
+
+  color:#002776;
+}
+
+.topo-faltantes-palpites span{
+
+  color:#006b2e;
+
+  font-size:13px;
+
+  font-weight:900;
+}
+
+.grupo-faltantes-palpites{
+
+  margin-top:14px;
+}
+
+.grupo-faltantes-palpites h4{
+
+  margin:0 0 8px 0;
+
+  color:#002776;
+}
+
+.lista-faltantes-palpites{
+
+  display:grid;
+
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+
+  gap:10px;
+}
+
+.lista-faltantes-palpites button{
+
+  width:100%;
+
+  min-height:54px;
+
+  margin:0;
+
+  padding:8px 10px;
+
+  border:1px solid #d4b800;
+
+  border-left:4px solid #009739;
+
+  border-radius:7px;
+
+  background:#ffdf00;
+
+  color:#052e16;
+
+  text-align:left;
+
+  font-size:12px;
+
+  font-weight:900;
+
+  line-height:1.2;
+}
+
+.lista-faltantes-palpites button:hover{
+
+  transform:translateY(-1px);
+
+  box-shadow:0 8px 18px rgba(0,39,118,0.18);
+}
+
+.lista-faltantes-palpites small{
+
+  display:block;
+
+  margin-top:3px;
+
+  overflow:hidden;
+
+  color:#006b2e;
+
+  font-size:10px;
+
+  font-weight:900;
+
+  text-overflow:ellipsis;
+
+  white-space:nowrap;
+}
+
+.jogo-palpite-destacado{
+
+  outline:3px solid #ffdf00;
+
+  box-shadow:0 0 0 6px rgba(255,223,0,0.28);
 }
 
 .secao-fase{
@@ -4079,7 +4378,7 @@ button.nome-participante-status{
 
   .login-logo{
 
-    width:min(238px, 100%);
+    width:min(214px, 100%);
   }
 
   .login-apresentacao h1{
@@ -4233,6 +4532,23 @@ button.nome-participante-status{
   .grade-admin-operacao{
 
     grid-template-columns:1fr;
+  }
+
+  .lista-admin-compacta{
+
+    grid-template-columns:1fr;
+  }
+
+  .lista-faltantes-palpites{
+
+    grid-template-columns:1fr;
+  }
+
+  .topo-faltantes-palpites{
+
+    align-items:flex-start;
+
+    flex-direction:column;
   }
 
   .acoes-usuario-admin{
