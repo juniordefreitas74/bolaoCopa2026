@@ -7,6 +7,7 @@
   <title>Dashboard</title>
 
   <link rel="stylesheet" href="style.css">
+  <script src="tema.js"></script>
 
 </head>
 <body>
@@ -22,14 +23,57 @@
     </a>
 
     <a href="grupos.html" class="botao-link botao-secundario">
-      Grupos da Copa
+      Tabela Copa
     </a>
 
+    <a
+      href="participantes.html"
+      id="linkParticipantes"
+      class="botao-link botao-secundario"
+    >
+      Participantes
+    </a>
+
+    <button
+      type="button"
+      class="botao-configuracoes"
+      onclick="abrirConfiguracoes()"
+    >
+      &#9881; Configura&ccedil;&otilde;es
+    </button>
+
+    <div
+      id="modalConfiguracoes"
+      class="modal-configuracoes oculto"
+      aria-hidden="true"
+    >
+      <div class="modal-configuracoes-card">
+        <div class="modal-configuracoes-topo">
+          <h2>Configura&ccedil;&otilde;es</h2>
+
+          <button
+            type="button"
+            class="botao-fechar-configuracoes"
+            onclick="fecharConfiguracoes()"
+            aria-label="Fechar configura&ccedil;&otilde;es"
+          >
+            X
+          </button>
+        </div>
+
+        <div id="painelConta"></div>
+      </div>
+    </div>
+
     <div id="acoesAdmin"></div>
+
+    <div id="resumoUsuario"></div>
      
     <div id="areaJogos"></div>
     <div id="ranking"></div>
     <div id="premiacao"></div>
+
+    <div id="barraSalvarPalpites"></div>
 
     <button onclick="logout()">
       Sair
@@ -37,7 +81,20 @@
 
   </div>
 
-  <script src="dashboard.js"></script>
+  <div id="feedbackSistema" class="feedback-sistema" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/core/fifa-terceiros.js"></script>
+  <script src="js/core/mata-mata.js"></script>
+  <script src="js/core/classificacao.js"></script>
+  <script src="js/core/fase32.js"></script>
+  <script src="js/core/pontuacao.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/ranking.js"></script>
+  <script src="js/premiacao.js"></script>
+  <script src="js/pages/dashboard.js"></script>
 
 </body>
 </html>

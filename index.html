@@ -5,33 +5,56 @@
   <title>Bol&atilde;o Copa 2026</title>
 
   <link rel="stylesheet" href="style.css">
+  <script src="tema.js"></script>
 </head>
 <body class="login-page">
-  <div class="login-box">
+  <main class="login-shell">
+    <section class="login-hero">
+      <img src="assets/logo-bolao-dos-amigos.png" alt="Bol&atilde;o dos Amigos Copa do Mundo 2026" class="login-logo">
 
-    <h1>Bol&atilde;o Copa 2026</h1>
+      <div class="login-apresentacao">
+        <p class="login-etiqueta">Copa do Mundo 2026</p>
+        <h1>Bol&atilde;o dos Amigos</h1>
+        <p>
+          Entre para registrar seus palpites, acompanhar a classifica&ccedil;&atilde;o e seguir a tabela oficial jogo a jogo.
+        </p>
+      </div>
 
-    <input type="text" id="login" placeholder="Login">
+      <div class="login-beneficios" aria-label="Resumo do bol&atilde;o">
+        <span>Palpites por fase</span>
+        <span>Ranking ao vivo</span>
+        <span>Premia&ccedil;&atilde;o estimada</span>
+      </div>
+    </section>
 
-    <input type="password" id="senha" placeholder="Senha">
+    <section class="login-box" aria-label="Entrar no bol&atilde;o">
+      <h2>Acessar bol&atilde;o</h2>
 
-    <button onclick="fazerLogin()">
-      Entrar
-    </button>
+      <input type="text" id="login" placeholder="Login" autocomplete="username">
 
-    <a href="regras.html" class="botao-link">
-      Como funciona a Copa 2026
-    </a>
+      <input type="password" id="senha" placeholder="Senha" autocomplete="current-password">
 
-    <a href="grupos.html" class="botao-link botao-secundario">
-      Grupos da Copa
-    </a>
+      <button onclick="fazerLogin()">
+        Entrar
+      </button>
 
-    <p id="msg"></p>
+      <div class="login-links">
+        <a href="regras.html" class="botao-link botao-login-secundario">
+          Ver regras
+        </a>
 
-  </div>
+        <a href="grupos.html" class="botao-link botao-login-secundario">
+          Ver tabela
+        </a>
+      </div>
 
-  <script src="app.js"></script>
+      <p id="msg"></p>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/pages/login.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Participantes - Bol&atilde;o Copa 2026</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="tema.js"></script>
+</head>
+<body>
+
+  <main class="pagina-participantes">
+    <section class="cabecalho-regras">
+      <h1>Participantes</h1>
+
+      <p>
+        Acompanhe quem j&aacute; preencheu todos os palpites e visualize as apostas
+        salvas de cada participante sem alterar nenhuma resposta.
+      </p>
+    </section>
+
+    <section class="painel-participantes">
+      <div class="topo-participantes">
+        <h2>Status dos palpites</h2>
+
+        <button
+          type="button"
+          id="botaoAtualizarParticipantes"
+          onclick="carregarParticipantes()"
+        >
+          Atualizar
+        </button>
+      </div>
+
+      <div id="statusParticipantes" class="status-tabela">
+        Carregando participantes...
+      </div>
+
+      <div id="listaParticipantes" class="lista-participantes"></div>
+    </section>
+
+    <div
+      id="modalPalpitesParticipante"
+      class="modal-configuracoes oculto"
+      aria-hidden="true"
+    >
+      <div class="modal-configuracoes-card modal-palpites-card">
+        <div class="modal-configuracoes-topo">
+          <h2 id="tituloPalpitesParticipante">Palpites</h2>
+
+          <button
+            type="button"
+            class="botao-fechar-configuracoes"
+            onclick="fecharPalpitesParticipante()"
+            aria-label="Fechar palpites"
+          >
+            X
+          </button>
+        </div>
+
+        <div id="conteudoPalpitesParticipante"></div>
+      </div>
+    </div>
+
+    <div class="acoes-regras">
+      <a href="dashboard.html" class="botao-link">
+        Voltar para o painel
+      </a>
+
+      <a href="grupos.html" class="botao-link botao-secundario">
+        Ver tabela
+      </a>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/core/mata-mata.js"></script>
+  <script src="js/pages/participantes.js"></script>
+</body>
+</html>
